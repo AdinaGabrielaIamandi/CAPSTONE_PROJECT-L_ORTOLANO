@@ -1,6 +1,7 @@
 package com.epicbe.lortolano.model;
 
 import java.time.LocalDate;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
@@ -22,6 +23,10 @@ public class RicevutaDiPagamento {
 
 	@Column(nullable = false)
 	private Double importo;
+	
+	@OneToMany(mappedBy = "ricevute_di_pagamento", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JsonIgnoreProperties({ "ricevute_di_pagamento" })
+	private List<Merce> merceVenduta;
 
 	@ManyToOne
 	@JsonIgnoreProperties({ "ricevute_di_pagamento" })

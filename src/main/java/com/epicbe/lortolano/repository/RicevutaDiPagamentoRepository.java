@@ -1,5 +1,10 @@
 package com.epicbe.lortolano.repository;
 
-public class RicevutaDiPagamentoRepository {
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import com.epicbe.lortolano.model.RicevutaDiPagamento;
+
+public interface RicevutaDiPagamentoRepository
+		extends CrudRepository<RicevutaDiPagamento, Long>, PagingAndSortingRepository<RicevutaDiPagamento, Long> {
 
 }

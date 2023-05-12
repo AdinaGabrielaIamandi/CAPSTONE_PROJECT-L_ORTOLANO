@@ -1,5 +1,6 @@
 package com.epicbe.lortolano.model;
 
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
@@ -27,6 +28,6 @@ public class Merce {
 
 	@ManyToOne
 	@JsonIgnoreProperties({ "merci" })
-	private Venditore venditore;
+	private List<Merce> merceVenduta;
 
 }

@@ -23,6 +23,7 @@ public class RicevutaDiPagamentoConfiguration {
 				.importo(fake.number().randomDouble(2, 0, 1000))
 				.venditore(null)
 				.cliente(null)
+				.merceVenduta(null)
 				.build();
 	}
 
