@@ -33,11 +33,11 @@ public class ClienteService {
 		return cliente;
 	}
 	
-	public void createClienteRandomConPIva() {		
+	public void saveClienteRandomConPIva() {		
 		 createCliente(randomClienteConIVAProvider.getObject());
 	}
 	
-	public void createClienteRandomSenzaPIva() {		
+	public void saveClienteRandomSenzaPIva() {		
 		 createCliente(randomClienteSenzaIVAProvider.getObject());
 	}
 	

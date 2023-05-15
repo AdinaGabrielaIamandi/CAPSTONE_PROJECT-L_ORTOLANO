@@ -11,41 +11,44 @@ import org.springframework.web.bind.annotation.*;
 import com.epicbe.lortolano.model.Cliente;
 import com.epicbe.lortolano.service.ClienteService;
 
-@CrossOrigin(origins =  "*", maxAge = 360000)
+@CrossOrigin(origins = "*", maxAge = 360000)
 @RestController
 @RequestMapping("/api/clienti")
 public class ClienteController {
-	
-	@Autowired ClienteService clienteService;
-	
+
+	@Autowired
+	ClienteService clienteService;
+
 	@GetMapping
 	@PreAuthorize("isAuthenticated()")
 	public ResponseEntity<?> getAll() {
 		return new ResponseEntity<List<Cliente>>(clienteService.getAllCliente(), HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/id/{id}")
 	@PreAuthorize("isAuthenticated()")
 	public ResponseEntity<?> getById(@PathVariable("id") Long id) {
 		return new ResponseEntity<>(clienteService.getCliente(id), HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/pageable")
 	@PreAuthorize("isAuthenticated()")
-	public ResponseEntity<Page<Cliente>> getAllPage(Pageable pageagle) {
+	public ResponseEntity<Page<Cliente>> getAllPage(Pageable pageable) {
 		return new ResponseEntity<Page<Cliente>>(clienteService.getAllClientePageable(pageable), HttpStatus.OK);
 	}
-	
+
 	@PostMapping
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<?> createCliente(@RequestBody Cliente Cliente) {
 		return new ResponseEntity<Cliente>(clienteService.createCliente(Cliente), HttpStatus.CREATED);
 	}
+
 	@DeleteMapping("/{id}")
 	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<String> deleteCliente(@PathVariable Long id){
+	public ResponseEntity<String> deleteCliente(@PathVariable Long id) {
 		return new ResponseEntity<String>(clienteService.removeCliente(id), HttpStatus.OK);
 	}
+
 	@PutMapping
 	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<?> updateUser(@RequestBody Cliente Cliente) {
