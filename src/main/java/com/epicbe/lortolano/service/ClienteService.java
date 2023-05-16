@@ -48,6 +48,10 @@ public class ClienteService {
 		return clienteRepo.findById(id).get();
 	}
 	
+	public Cliente getClienteRandom() {
+		return clienteRepo.findByClienteRandom();
+	}
+	
 	public String removeCliente(Long id) {
 		if(!clienteRepo.existsById(id)) {
 			throw new EntityExistsException("Cliente not exists!!!");

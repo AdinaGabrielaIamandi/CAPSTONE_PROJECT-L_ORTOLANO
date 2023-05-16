@@ -42,10 +42,6 @@ public class Cliente {
 
 	@OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JsonIgnoreProperties({ "cliente" })
-	private List<Merce> merceComprata;
-
-	@OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JsonIgnoreProperties({ "cliente" })
 	private List<RicevutaDiPagamento> ricevuteDiPagamaneto;
 
 }

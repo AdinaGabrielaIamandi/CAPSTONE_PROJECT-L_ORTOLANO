@@ -38,19 +38,19 @@ public class ClienteController {
 	}
 
 	@PostMapping
-	@PreAuthorize("hasRole('ADMIN')")
-	public ResponseEntity<?> createCliente(@RequestBody Cliente Cliente) {
-		return new ResponseEntity<Cliente>(clienteService.createCliente(Cliente), HttpStatus.CREATED);
+	@PreAuthorize("isAuthenticated()")
+	public ResponseEntity<?> createCliente(@RequestBody Cliente cliente) {
+		return new ResponseEntity<Cliente>(clienteService.createCliente(cliente), HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("/{id}")
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("isAuthenticated()")
 	public ResponseEntity<String> deleteCliente(@PathVariable Long id) {
 		return new ResponseEntity<String>(clienteService.removeCliente(id), HttpStatus.OK);
 	}
 
 	@PutMapping
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("isAuthenticated()")
 	public ResponseEntity<?> updateUser(@RequestBody Cliente Cliente) {
 		return new ResponseEntity<Cliente>(clienteService.updateCliente(Cliente), HttpStatus.CREATED);
 	}

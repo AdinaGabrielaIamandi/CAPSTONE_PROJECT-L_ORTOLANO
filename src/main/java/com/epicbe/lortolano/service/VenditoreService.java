@@ -36,6 +36,14 @@ public class VenditoreService {
 		}
 		return venditoreRepo.findById(id).get();
 	}
+	
+	public Venditore getVenditoreRandom() {
+		return venditoreRepo.findByVenditoreRandom();
+	}
+	
+	public List<Venditore> getAllVenditoreByIndirizzo(String posizione){
+		return (List<Venditore>) venditoreRepo.findByIndirizzo(posizione);
+	}
 
 	public String removeVenditore(Long id) {
 		if (!venditoreRepo.existsById(id)) {

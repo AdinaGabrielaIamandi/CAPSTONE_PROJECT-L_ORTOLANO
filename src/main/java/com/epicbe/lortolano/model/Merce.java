@@ -1,9 +1,17 @@
 package com.epicbe.lortolano.model;
 
-import java.util.List;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "merci")
@@ -26,8 +34,8 @@ public class Merce {
 	@Column(nullable = false)
 	private Double prezzoAlKg;
 
-	@ManyToOne
-	@JsonIgnoreProperties({ "merci" })
-	private List<Merce> merceVenduta;
+    @ManyToOne
+    @JoinColumn(name = "venditore_id")
+    private Venditore venditore;
 
 }

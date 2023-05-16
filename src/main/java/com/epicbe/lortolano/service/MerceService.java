@@ -45,6 +45,14 @@ public class MerceService {
 		return merceRepo.findById(id).get();
 	}
 	
+	public List<Merce> getMerceRandom() {
+		return merceRepo.findByMerceRandom();
+	}
+	
+	public List<Merce> getAllMerceByTipo(String tipo){
+		return (List<Merce>) merceRepo.searchByPartName(tipo);
+	}
+	
 	public String removeMerce(Long id) {
 		if(!merceRepo.existsById(id)) {
 			throw new EntityExistsException("Merce not exists!!!");

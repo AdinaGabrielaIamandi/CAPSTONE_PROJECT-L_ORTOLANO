@@ -3,12 +3,26 @@ package com.epicbe.lortolano.configuration;
 import java.time.LocalDate;
 import java.util.Locale;
 import java.util.concurrent.ThreadLocalRandom;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import com.epicbe.lortolano.model.RicevutaDiPagamento;
+import com.epicbe.lortolano.service.ClienteService;
+import com.epicbe.lortolano.service.MerceService;
+import com.epicbe.lortolano.service.VenditoreService;
 import com.github.javafaker.Faker;
 
 @Configuration
 public class RicevutaDiPagamentoConfiguration {
+	
+	@Autowired
+	ClienteService clienteService;
+	
+	@Autowired
+	VenditoreService venditoreService;
+	
+	@Autowired
+	MerceService merceService;
 
 	@Bean("RicevutaRandom")
 	@Scope("prototype")
@@ -21,9 +35,9 @@ public class RicevutaDiPagamentoConfiguration {
 		return RicevutaDiPagamento.builder()
 				.data(randomDate)
 				.importo(fake.number().randomDouble(2, 0, 1000))
-				.venditore(null)
-				.cliente(null)
-				.merceVenduta(null)
+				.venditore(venditoreService.getVenditoreRandom())
+				.cliente(clienteService.getClienteRandom())
+				.merceVenduta(merceService.getMerceRandom())
 				.build();
 	}
 

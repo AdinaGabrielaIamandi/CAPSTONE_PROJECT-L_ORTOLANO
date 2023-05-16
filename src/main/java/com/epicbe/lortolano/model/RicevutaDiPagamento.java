@@ -24,8 +24,6 @@ public class RicevutaDiPagamento {
 	@Column(nullable = false)
 	private Double importo;
 	
-	@OneToMany(mappedBy = "ricevute_di_pagamento", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JsonIgnoreProperties({ "ricevute_di_pagamento" })
 	private List<Merce> merceVenduta;
 
 	@ManyToOne
