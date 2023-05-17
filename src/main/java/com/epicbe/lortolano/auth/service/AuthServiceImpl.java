@@ -2,7 +2,6 @@ package com.epicbe.lortolano.auth.service;
 
 import java.util.HashSet;
 import java.util.Set;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -10,7 +9,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import com.epicbe.lortolano.auth.entity.ERole;
 import com.epicbe.lortolano.auth.entity.Role;
 import com.epicbe.lortolano.auth.entity.User;
@@ -20,6 +18,7 @@ import com.epicbe.lortolano.auth.payload.RegisterDto;
 import com.epicbe.lortolano.auth.repository.RoleRepository;
 import com.epicbe.lortolano.auth.repository.UserRepository;
 import com.epicbe.lortolano.auth.security.JwtTokenProvider;
+
 
 @Service
 public class AuthServiceImpl implements AuthService {
@@ -82,15 +81,15 @@ public class AuthServiceImpl implements AuthService {
         
         
         // Per registrare tutti come USER di Default commentare IF
-        if(registerDto.getRoles() != null) {
+        /*if(registerDto.getRoles() != null) {
 	        registerDto.getRoles().forEach(role -> {
 	        	Role userRole = roleRepository.findByRoleName(getRole(role)).get();
 	        	roles.add(userRole);
 	        });
-        } else {
+        } else { */
         	Role userRole = roleRepository.findByRoleName(ERole.ROLE_USER).get();
         	roles.add(userRole);
-        }
+       // }
         
         user.setRoles(roles);
         System.out.println(user);
@@ -100,8 +99,9 @@ public class AuthServiceImpl implements AuthService {
     }
     
     public ERole getRole(String role) {
-    	if(role.equals("ROLE_ADMIN")) return ERole.ROLE_ADMIN;
-    	else return ERole.ROLE_USER;
+    	/*if(role.equals("ROLE_ADMIN")) return ERole.ROLE_ADMIN;
+    	else*/ 
+    	return ERole.ROLE_USER;
     }
     
 }

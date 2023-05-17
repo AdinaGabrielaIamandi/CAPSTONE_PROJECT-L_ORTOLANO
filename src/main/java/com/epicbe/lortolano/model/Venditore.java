@@ -1,9 +1,18 @@
 package com.epicbe.lortolano.model;
 
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
-import lombok.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 
 @Entity
 @Table(name = "venditori")
@@ -20,10 +29,10 @@ public class Venditore {
 	@Column(nullable = false)
 	private String indirizzo;
 
-	@Column(nullable = false, unique = true, length = 11)
+	@Column(unique = true, length = 11)
 	private Long partivaIva;
 
-	@Column(nullable = true, unique = true)
+	@Column(unique = true)
 	private String ragioneSociale;
 
 	@Column(nullable = true)
@@ -31,13 +40,8 @@ public class Venditore {
 
 	@Column(nullable = true)
 	private String cognome;
-
-	@OneToMany(mappedBy = "venditore", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JsonIgnoreProperties({ "venditore" })
-	private List<Merce> merceInVendita;
-
-	@OneToMany(mappedBy = "venditore", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JsonIgnoreProperties({ "venditore" })
-	private List<RicevutaDiPagamento> ricevuteDiPagamaneto;
+	
+	@OneToMany(mappedBy = "venditore")
+	private List<Prodotto> prodotti;
 
 }

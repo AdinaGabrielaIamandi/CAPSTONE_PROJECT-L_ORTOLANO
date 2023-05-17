@@ -18,16 +18,24 @@ public class VenditoreService {
 	VenditoreRepository venditoreRepo;
 	
 	@Autowired
-	@Qualifier("VenditoreRandom")
-	private ObjectProvider<Venditore> venditoreRandomProvider;
+	@Qualifier("VenditoreRandomPIva")
+	private ObjectProvider<Venditore> venditoreRandomPIvaProvider;
+	
+	@Autowired
+	@Qualifier("VenditoreRandomNoIva")
+	private ObjectProvider<Venditore> venditoreRandomNoIvaProvider;
 	
 	public Venditore createVenditore(Venditore venditore) {
 		venditoreRepo.save(venditore);
 		return venditore;
 	}
 
-	public void saveVenditoreRandom() {
-		createVenditore(venditoreRandomProvider.getObject());
+	public void saveVenditoreRandomPIva() {
+		createVenditore(venditoreRandomPIvaProvider.getObject());
+	}
+	
+	public void saveVenditoreRandomNoIva() {
+		createVenditore(venditoreRandomNoIvaProvider.getObject());
 	}
 
 	public Venditore getVenditore(Long id) {

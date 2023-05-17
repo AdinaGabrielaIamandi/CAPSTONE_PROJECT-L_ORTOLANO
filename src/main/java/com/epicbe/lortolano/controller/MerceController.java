@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.epicbe.lortolano.model.Merce;
+import com.epicbe.lortolano.model.Prodotto;
 import com.epicbe.lortolano.service.MerceService;
 
-@CrossOrigin(origins = "*", maxAge = 360000)
+@CrossOrigin(origins = "*", maxAge = 360000000)
 @RestController
 @RequestMapping("/api/merci")
 public class MerceController {
@@ -30,7 +30,7 @@ public class MerceController {
 	@GetMapping
 	@PreAuthorize("isAuthenticated()")
 	public ResponseEntity<?> getAll() {
-		return new ResponseEntity<List<Merce>>(merceService.getAllMerce(), HttpStatus.OK);
+		return new ResponseEntity<List<Prodotto>>(merceService.getAllMerce(), HttpStatus.OK);
 	}
 
 	@GetMapping("/id/{id}")
@@ -41,8 +41,8 @@ public class MerceController {
 
 	@GetMapping("/pageable")
 	@PreAuthorize("isAuthenticated()")
-	public ResponseEntity<Page<Merce>> getAllPage(Pageable pageable) {
-		return new ResponseEntity<Page<Merce>>(merceService.getAllMercePageable(pageable), HttpStatus.OK);
+	public ResponseEntity<?> getAllPage(Pageable pageable) {
+		return new ResponseEntity<Page<Prodotto>>(merceService.getAllMercePageable(pageable), HttpStatus.OK);
 	}
 
 	@GetMapping("/partenome/{tipo}")
@@ -53,8 +53,8 @@ public class MerceController {
 
 	@PostMapping
 	@PreAuthorize("isAuthenticated()")
-	public ResponseEntity<?> createCliente(@RequestBody Merce merce) {
-		return new ResponseEntity<Merce>(merceService.createMerce(merce), HttpStatus.CREATED);
+	public ResponseEntity<?> createCliente(@RequestBody Prodotto merce) {
+		return new ResponseEntity<Prodotto>(merceService.createMerce(merce), HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("/{id}")
@@ -65,8 +65,8 @@ public class MerceController {
 
 	@PutMapping
 	@PreAuthorize("isAuthenticated()")
-	public ResponseEntity<?> updateUser(@RequestBody Merce merce) {
-		return new ResponseEntity<Merce>(merceService.updateMerce(merce), HttpStatus.CREATED);
+	public ResponseEntity<?> updateUser(@RequestBody Prodotto merce) {
+		return new ResponseEntity<Prodotto>(merceService.updateMerce(merce), HttpStatus.CREATED);
 	}
 
 }

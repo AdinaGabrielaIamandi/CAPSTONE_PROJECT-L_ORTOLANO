@@ -1,7 +1,6 @@
 package com.epicbe.lortolano.auth.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
 import com.epicbe.lortolano.auth.entity.ERole;
 import com.epicbe.lortolano.auth.entity.Role;
 

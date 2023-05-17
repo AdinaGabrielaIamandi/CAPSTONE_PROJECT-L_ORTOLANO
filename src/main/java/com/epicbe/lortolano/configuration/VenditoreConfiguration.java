@@ -8,12 +8,20 @@ import com.github.javafaker.Faker;
 @Configuration
 public class VenditoreConfiguration {
 
-	@Bean("VenditoreRandom")
+	@Bean("VenditoreRandomPIva")
 	@Scope("prototype")
-	public Venditore venditoreRandom() {
+	public Venditore venditoreRandomPIva() {
 		Faker fake = new Faker(new Locale("it-IT"));
 		return Venditore.builder().indirizzo(fake.address().fullAddress())
 				.partivaIva((long) fake.number().numberBetween(111111111, 99999999)).ragioneSociale(fake.company().bs())
+				.nome(fake.name().firstName()).cognome(fake.name().lastName()).build();
+	}
+	
+	@Bean("VenditoreRandomNoIva")
+	@Scope("prototype")
+	public Venditore venditoreRandomNoIva() {
+		Faker fake = new Faker(new Locale("it-IT"));
+		return Venditore.builder().indirizzo(fake.address().fullAddress())
 				.nome(fake.name().firstName()).cognome(fake.name().lastName()).build();
 	}
 

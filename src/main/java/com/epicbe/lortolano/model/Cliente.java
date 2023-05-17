@@ -40,8 +40,4 @@ public class Cliente {
 	@Column(nullable = false)
 	private String numeroTelefono;
 
-	@OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JsonIgnoreProperties({ "cliente" })
-	private List<RicevutaDiPagamento> ricevuteDiPagamaneto;
-
 }

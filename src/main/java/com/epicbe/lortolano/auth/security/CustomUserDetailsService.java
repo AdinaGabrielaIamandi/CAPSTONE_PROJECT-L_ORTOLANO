@@ -6,10 +6,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 import com.epicbe.lortolano.auth.entity.User;
 import com.epicbe.lortolano.auth.repository.UserRepository;
-
 import java.util.Set;
 import java.util.stream.Collectors;
 

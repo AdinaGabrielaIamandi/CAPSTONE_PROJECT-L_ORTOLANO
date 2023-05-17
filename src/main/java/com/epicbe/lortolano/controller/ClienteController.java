@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import com.epicbe.lortolano.model.Cliente;
 import com.epicbe.lortolano.service.ClienteService;
 
-@CrossOrigin(origins = "*", maxAge = 360000)
+@CrossOrigin(origins = "*", maxAge = 360000000)
 @RestController
 @RequestMapping("/api/clienti")
 public class ClienteController {

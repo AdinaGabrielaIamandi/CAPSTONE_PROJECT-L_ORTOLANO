@@ -7,25 +7,27 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import com.epicbe.lortolano.model.Merce;
-import com.epicbe.lortolano.repository.MerceRepository;
+
+import com.epicbe.lortolano.model.Prodotto;
+import com.epicbe.lortolano.repository.ProdottoRepository;
+
 import jakarta.persistence.EntityExistsException;
 
 @Service
 public class MerceService {
 	
 	@Autowired
-	MerceRepository merceRepo;
+	ProdottoRepository merceRepo;
 	
 	@Autowired
 	@Qualifier("VerduraRandom")
-	ObjectProvider<Merce> randomVerdureProvider;
+	ObjectProvider<Prodotto> randomVerdureProvider;
 	
 	@Autowired
 	@Qualifier("FruttaRandom")
-	ObjectProvider<Merce> randomFruttaProvider;
+	ObjectProvider<Prodotto> randomFruttaProvider;
 	
-	public Merce createMerce(Merce merce) {
+	public Prodotto createMerce(Prodotto merce) {
 		merceRepo.save(merce);
 		return merce;
 	}
@@ -38,19 +40,15 @@ public class MerceService {
 		createMerce(randomFruttaProvider.getObject());
 	}
 	
-	public Merce getMerce(Long id) {
+	public Prodotto getMerce(Long id) {
 		if(!merceRepo.existsById(id)) {
 			throw new EntityExistsException("Merce not exists!!!");
 		}
 		return merceRepo.findById(id).get();
 	}
 	
-	public List<Merce> getMerceRandom() {
-		return merceRepo.findByMerceRandom();
-	}
-	
-	public List<Merce> getAllMerceByTipo(String tipo){
-		return (List<Merce>) merceRepo.searchByPartName(tipo);
+	public List<Prodotto> getAllMerceByTipo(String tipo){
+		return (List<Prodotto>) merceRepo.searchByPartName(tipo);
 	}
 	
 	public String removeMerce(Long id) {
@@ -61,7 +59,7 @@ public class MerceService {
 		return "Cliente Deleted!!!";
 	}
 	
-	public Merce updateMerce(Merce merce) {
+	public Prodotto updateMerce(Prodotto merce) {
 		if(!merceRepo.existsById(merce.getId())) {
 			throw new EntityExistsException("Merce not exists!!!");
 		}
@@ -69,12 +67,12 @@ public class MerceService {
 		return merce;
 	}
 	
-	public List<Merce> getAllMerce() {
-		return (List<Merce>) merceRepo.findAll();
+	public List<Prodotto> getAllMerce() {
+		return (List<Prodotto>) merceRepo.findAll();
 	}
 	
-	public Page<Merce> getAllMercePageable(Pageable pageable) {
-		return (Page<Merce>) merceRepo.findAll(pageable);
+	public Page<Prodotto> getAllMercePageable(Pageable pageable) {
+		return (Page<Prodotto>) merceRepo.findAll(pageable);
 	}
 
 }

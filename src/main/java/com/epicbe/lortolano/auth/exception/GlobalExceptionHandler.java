@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-
 import com.epicbe.lortolano.auth.payload.ErrorDetails;
-
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +19,7 @@ import java.util.Map;
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-    // handle specific exceptions
+	 // handle specific exceptions
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ErrorDetails> handleResourceNotFoundException(ResourceNotFoundException exception,
                                                                         WebRequest webRequest){
