@@ -1,7 +1,5 @@
 package com.epicbe.lortolano.model;
 
-import java.util.List;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -35,9 +33,7 @@ public class Cliente {
 	@Column(nullable = false)
 	private String email;
 
+	@Column(nullable = true, unique = true)
 	private String pec;
-
-	@Column(nullable = false)
-	private String numeroTelefono;
 
 }

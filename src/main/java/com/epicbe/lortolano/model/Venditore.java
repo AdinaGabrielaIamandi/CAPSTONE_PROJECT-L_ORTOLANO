@@ -41,6 +41,12 @@ public class Venditore {
 	@Column(nullable = true)
 	private String cognome;
 	
+	@Column(nullable = false)
+	private String email;
+
+	@Column(nullable = true, unique = true)
+	private String pec;
+	
 	@OneToMany(mappedBy = "venditore")
 	private List<Prodotto> prodotti;
 

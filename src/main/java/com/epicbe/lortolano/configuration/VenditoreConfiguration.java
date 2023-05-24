@@ -14,15 +14,16 @@ public class VenditoreConfiguration {
 		Faker fake = new Faker(new Locale("it-IT"));
 		return Venditore.builder().indirizzo(fake.address().fullAddress())
 				.partivaIva((long) fake.number().numberBetween(111111111, 99999999)).ragioneSociale(fake.company().bs())
-				.nome(fake.name().firstName()).cognome(fake.name().lastName()).build();
+				.nome(fake.name().firstName()).cognome(fake.name().lastName()).email(fake.internet().emailAddress())
+				.pec(fake.internet().emailAddress()).build();
 	}
-	
+
 	@Bean("VenditoreRandomNoIva")
 	@Scope("prototype")
 	public Venditore venditoreRandomNoIva() {
 		Faker fake = new Faker(new Locale("it-IT"));
-		return Venditore.builder().indirizzo(fake.address().fullAddress())
-				.nome(fake.name().firstName()).cognome(fake.name().lastName()).build();
+		return Venditore.builder().indirizzo(fake.address().fullAddress()).nome(fake.name().firstName())
+				.cognome(fake.name().lastName()).email(fake.internet().emailAddress()).build();
 	}
 
 }

@@ -48,7 +48,7 @@ public class LOrtolanoRunner implements ApplicationRunner {
 		System.out.println("Wait for it ...");
 		
 		//SETTA RUOLI ADMIN/USER IN DB
-		setRoleDefault();
+		//setRoleDefault();
 		
 		//REGISTRARSI QUI TRAMITE ENDPOINT
 		
@@ -57,7 +57,7 @@ public class LOrtolanoRunner implements ApplicationRunner {
 		//IMPORTARE LE PROVINCE DA CSV QUI DA POSTMAN
 		
 		//CREA ENTITA DI DEFAULT NEL DB	
-		starterDB();
+		//starterDB();
 
 	}
 	
