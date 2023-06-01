@@ -12,21 +12,18 @@ import com.epicbe.lortolano.auth.entity.Role;
 import com.epicbe.lortolano.auth.repository.RoleRepository;
 import com.epicbe.lortolano.auth.repository.UserRepository;
 import com.epicbe.lortolano.auth.service.AuthService;
-import com.epicbe.lortolano.service.ClienteService;
+import com.epicbe.lortolano.model.Prodotto;
+import com.epicbe.lortolano.service.UtenteService;
 import com.epicbe.lortolano.service.MerceService;
-import com.epicbe.lortolano.service.VenditoreService;
 
 @Component
 public class LOrtolanoRunner implements ApplicationRunner {
 
 	@Autowired
-	ClienteService clienteService;
+	UtenteService clienteService;
 	
 	@Autowired
 	MerceService merceService;
-	
-	@Autowired
-	VenditoreService venditoreService;
 	
 	@Autowired
 	RoleRepository roleRepository;
@@ -63,20 +60,24 @@ public class LOrtolanoRunner implements ApplicationRunner {
 	
 	private void starterDB() {
 
-		for (int i = 0; i<10; i++) {
-			clienteService.saveClienteRandomConPIva();
-			clienteService.saveClienteRandomSenzaPIva();
-		}
+//		for (int i = 0; i<20; i++) {
+//			clienteService.saveClienteRandomConPIva();
+//			clienteService.saveClienteRandomSenzaPIva();
+//		}
+//		
+//		for (int i = 0; i<20; i++) {
+//			venditoreService.saveVenditoreRandomNoIva();
+//			venditoreService.saveVenditoreRandomPIva();
+//		}
+//		
+//		for (int i = 0; i<13; i++) {
+//			merceService.saveFruttaRandom();
+//			merceService.saveVerdure();
+//		}
 		
-		for (int i = 0; i<20; i++) {
-			venditoreService.saveVenditoreRandomNoIva();
-			venditoreService.saveVenditoreRandomPIva();
-		}
+		Prodotto merce = new Prodotto(null, "Asparigi", 3.00, "7,00", clienteService.getClienteRandom());
 		
-		for (int i = 0; i<130; i++) {
-			merceService.saveFruttaRandom();
-			merceService.saveVerdure();
-		}
+		merceService.createMerce(merce);
 
 	}
 	

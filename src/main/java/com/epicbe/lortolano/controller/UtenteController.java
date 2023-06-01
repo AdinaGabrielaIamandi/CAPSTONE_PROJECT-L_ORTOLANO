@@ -8,21 +8,21 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import com.epicbe.lortolano.model.Cliente;
-import com.epicbe.lortolano.service.ClienteService;
+import com.epicbe.lortolano.model.Utente;
+import com.epicbe.lortolano.service.UtenteService;
 
 @CrossOrigin(origins = "*", maxAge = 360000000)
 @RestController
-@RequestMapping("/api/clienti")
-public class ClienteController {
+@RequestMapping("/api/utente")
+public class UtenteController {
 
 	@Autowired
-	ClienteService clienteService;
+	UtenteService clienteService;
 
 	@GetMapping
 	@PreAuthorize("isAuthenticated()")
 	public ResponseEntity<?> getAll() {
-		return new ResponseEntity<List<Cliente>>(clienteService.getAllCliente(), HttpStatus.OK);
+		return new ResponseEntity<List<Utente>>(clienteService.getAllCliente(), HttpStatus.OK);
 	}
 
 	@GetMapping("/id/{id}")
@@ -33,14 +33,14 @@ public class ClienteController {
 
 	@GetMapping("/pageable")
 	@PreAuthorize("isAuthenticated()")
-	public ResponseEntity<Page<Cliente>> getAllPage(Pageable pageable) {
-		return new ResponseEntity<Page<Cliente>>(clienteService.getAllClientePageable(pageable), HttpStatus.OK);
+	public ResponseEntity<Page<Utente>> getAllPage(Pageable pageable) {
+		return new ResponseEntity<Page<Utente>>(clienteService.getAllClientePageable(pageable), HttpStatus.OK);
 	}
 
 	@PostMapping
 	@PreAuthorize("isAuthenticated()")
-	public ResponseEntity<?> createCliente(@RequestBody Cliente cliente) {
-		return new ResponseEntity<Cliente>(clienteService.createCliente(cliente), HttpStatus.CREATED);
+	public ResponseEntity<?> createCliente(@RequestBody Utente cliente) {
+		return new ResponseEntity<Utente>(clienteService.createCliente(cliente), HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("/{id}")
@@ -51,8 +51,8 @@ public class ClienteController {
 
 	@PutMapping
 	@PreAuthorize("isAuthenticated()")
-	public ResponseEntity<?> updateUser(@RequestBody Cliente Cliente) {
-		return new ResponseEntity<Cliente>(clienteService.updateCliente(Cliente), HttpStatus.CREATED);
+	public ResponseEntity<?> updateUser(@RequestBody Utente Cliente) {
+		return new ResponseEntity<Utente>(clienteService.updateCliente(Cliente), HttpStatus.CREATED);
 	}
 
 }

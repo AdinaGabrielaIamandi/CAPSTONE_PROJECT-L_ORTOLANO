@@ -6,25 +6,26 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import com.epicbe.lortolano.model.Cliente;
-import com.epicbe.lortolano.repository.ClienteRepository;
+import com.epicbe.lortolano.model.Utente;
+import com.epicbe.lortolano.repository.UtenteRepository;
+
 import jakarta.persistence.EntityExistsException;
 
 @Service
-public class ClienteService {
+public class UtenteService {
 	
 	@Autowired
-	ClienteRepository clienteRepo;
+	UtenteRepository clienteRepo;
 	
 	@Autowired
-	@Qualifier("ClienteConPIVA")
-	private ObjectProvider<Cliente> randomClienteConIVAProvider;
+	@Qualifier("UtenteConPIVA")
+	private ObjectProvider<Utente> randomClienteConIVAProvider;
 	
 	@Autowired
-	@Qualifier("ClienteSenzaPIVA")
-	private ObjectProvider<Cliente> randomClienteSenzaIVAProvider;
+	@Qualifier("UtenteSenzaPIVA")
+	private ObjectProvider<Utente> randomClienteSenzaIVAProvider;
 	
-	public Cliente createCliente(Cliente cliente) {
+	public Utente createCliente(Utente cliente) {
 		if(clienteRepo.existsByEmail(cliente.getEmail())) {
 			throw new EntityExistsException("Email exist!!!");
 		} else {
@@ -41,15 +42,15 @@ public class ClienteService {
 		 createCliente(randomClienteSenzaIVAProvider.getObject());
 	}
 	
-	public Cliente getCliente(Long id) {
+	public Utente getCliente(Long id) {
 		if(!clienteRepo.existsById(id)) {
 			throw new EntityExistsException("Cliente not exists!!!");
 		}
 		return clienteRepo.findById(id).get();
 	}
 	
-	public Cliente getClienteRandom() {
-		return clienteRepo.findByClienteRandom();
+	public Utente getClienteRandom() {
+		return clienteRepo.findByUtenteRandom();
 	}
 	
 	public String removeCliente(Long id) {
@@ -60,7 +61,7 @@ public class ClienteService {
 		return "Cliente Deleted!!!";
 	}
 	
-	public Cliente updateCliente(Cliente Cliente) {
+	public Utente updateCliente(Utente Cliente) {
 		if(!clienteRepo.existsById(Cliente.getId())) {
 			throw new EntityExistsException("Cliente not exists!!!");
 		}
@@ -68,12 +69,13 @@ public class ClienteService {
 		return Cliente;
 	}
 	
-	public List<Cliente> getAllCliente() {
-		return (List<Cliente>) clienteRepo.findAll();
+	public List<Utente> getAllCliente() {
+		return (List<Utente>) clienteRepo.findAll();
 	}
 	
-	public Page<Cliente> getAllClientePageable(Pageable pageable) {
-		return (Page<Cliente>) clienteRepo.findAll(pageable);
+	public Page<Utente> getAllClientePageable(Pageable pageable) {
+		return (Page<Utente>) clienteRepo.findAll(pageable);
 	}
+
 
 }

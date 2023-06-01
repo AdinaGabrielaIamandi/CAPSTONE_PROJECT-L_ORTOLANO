@@ -35,7 +35,7 @@ public class Prodotto {
 	private String prezzoAlKg;
 	
 	@ManyToOne
-	@JoinColumn(name = "venditore_id")
-	private Venditore venditore;
+	@JoinColumn(name = "utente_id")
+	private Utente utente;
 
 }

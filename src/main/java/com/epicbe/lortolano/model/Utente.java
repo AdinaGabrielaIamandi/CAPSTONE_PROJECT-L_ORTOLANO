@@ -4,12 +4,12 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "clienti")
+@Table(name = "utenti")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
-public class Cliente {
+public class Utente {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
